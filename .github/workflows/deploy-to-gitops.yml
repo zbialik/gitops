@@ -68,6 +68,11 @@ jobs:
               TEMP="${chart_dir%/*}"
               APP_NAMESPACE="${TEMP##*/}"
 
+              # Run helm dependency build if no Chart.lock (hack)
+              if [ ! -f "$chart_dir/Chart.lock" ]; then
+                helm dependency build $chart_dir
+              fi
+
               # Running helm template
               mkdir -p $MANIFESTS_DIR/$APP_NAME
               helm template $APP_NAME $chart_dir --namespace $APP_NAMESPACE > "$MANIFESTS_DIR/$APP_NAME/generated.yaml"
