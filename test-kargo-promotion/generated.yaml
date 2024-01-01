@@ -1,8 +1,0 @@
----
-# Source: test-kargo-promotion/charts/test-kargo-promotion/templates/configmap.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-helm-1.0.1
-data:
-  foo: "bar"
